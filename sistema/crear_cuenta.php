@@ -1,26 +1,39 @@
 <?php
-var_dump($_POST); //recibimos los datos del formulario
+include('include/usuario/usuario.php');
 
-$nombre = $_POST['nombre']; //obtenemos el nombre del formulario
-$usuario = $_POST['usuario']; //obtenemos el usuario del formulario
-$clave = $_POST['clave']; //    obtenemos la clave del formulario
-$confirmarClave = $_POST['confirmarClave']; // obtenemos la confirmacion de clave del formulario
+// Recibimos datos del formulario
+$nombre = $_POST['nombre'];
+$usuario = $_POST['usuario'];
+$clave = $_POST['clave'];
+$confirmarClave = $_POST['confirmarClave'];
 
-if ($clave !== $confirmarClave) { // verificamos que las claves coincidan
+// Validamos clave
+if ($clave !== $confirmarClave) {
     echo "Las claves no coinciden";
     exit;
 }
 
+// Verificamos si el usuario ya existe
+$archivos = scandir('../db/usuario');
+foreach ($archivos as $archivo) {
+    if ($archivo !== '.' && $archivo !== '..') {
+        $contenido = file_get_contents('../db/usuario/' . $archivo);
+        $usuarioJson = json_decode($contenido, true);
+        if ($usuario === $usuarioJson['usuario']) {
+            echo "El usuario ya existe";
+            exit;
+        }
+    }
+}
 
-$usuarioData = [ //creamos un array con los datos del usuario
-    'id' => 1,
-    'nombre' => $nombre,
-    'usuario' => $usuario,
-    'clave' => $clave,
-    'activo' => 1
-];
-$archivos = scandir('../db/usuario'); //obtenemos los archivos del directorio usuario
-var_dump($archivos); // verificamos si el usuario ya existe
-$json = json_encode($usuarioData, JSON_PRETTY_PRINT); // convertimos el array a json
-file_put_contents('../db/usuario/1.json', $json); // guardamos el json en el directorio usuario con el nombre del usuario
+// Creamos el usuario y lo guardamos
+$usuarioObj = new Usuario();
+$usuarioObj->setNombre($nombre);
+$usuarioObj->setUsuario($usuario);
+$usuarioObj->setClave($clave);
+$usuarioObj->setActivo(1);
+
+$usuarioObj->guardar();
+
+echo "Usuario creado correctamente";
 ?>

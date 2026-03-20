@@ -18,14 +18,14 @@
         border-radius: 10px;
       " class="container">
     <h1 class="mt-5">Iniciar secion</h1>
-    <form>
+    <form method="post" action="sistema/login.php"> <!-- enviamos los datos del formulario a login.php -->
       <div class="mb-3">
-        <label for="email" class="form-label">Usuario</label>
+        <label for="usuario" class="form-label">Usuario</label> <!-- obtenemos el usuario del formulario -->
         <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Ingrese su usuario" required />
       </div>
 
       <div class="mb-3">
-        <label for="clave" class="form-label">Clave</label>
+        <label for="clave" class="form-label">Clave</label> <!-- obtenemos la clave del formulario -->
         <input type="password" id="clave" name="clave" class="form-control"
           placeholder="Ingrese su clave" required />
       </div>

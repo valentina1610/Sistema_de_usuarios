@@ -13,7 +13,7 @@
   <div style="border: 1px solid #ccc; max-width: 400px; margin: 50px auto; padding: 20px; border-radius: 10px;"
     class="container">
     <h1 class="mt-5">Recuperacion de cuenta</h1>
-    <form method="post">
+    <form method="post" action="sistema/restablecer_clave.php">
       <div class="mb-3">
         <label for="usuario" class="form-label">Usuario</label>
         <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Ingrese su usuario" required />
