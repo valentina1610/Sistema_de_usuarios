@@ -1,7 +1,7 @@
 {
-    "id": 1,
+    "id": "1",
     "nombre": "maria becerra",
-    "usuario": "mariaBec123",
-    "clave": "maria123",
-    "activo": 1
+    "usuario": "maria123",
+    "clave": "mariaa",
+    "activo": "0"
 }

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editar cuenta</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+</head>
+
+<body class="d-flex justify-content-center align-items-center vh-100">
+    <div style="border: 1px solid #ccc; max-width: 400px; margin: 50px auto; padding: 20px; border-radius: 10px;"
+        class="container">
+        <h1 class="mt-5">Editar cuenta</h1>
+        <form method="POST" action="sistema/include/usuario/edicion_ajax.php">
+
+            <div class="mb-3">
+                <label class="form-label">ID</label>
+                <input type="number" name="id" class="form-control" placeholder="Ingrese ID" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" name="nombre" class="form-control" placeholder="Nombre completo" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Usuario</label>
+                <input type="text" name="usuario" class="form-control" placeholder="Usuario" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Clave</label>
+                <input type="password" name="clave" class="form-control" placeholder="Clave" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Activo</label>
+                <select name="activo" class="form-control">
+                    <option value="1">Activo</option>
+                    <option value="0">Inactivo</option>
+                </select>
+            </div>
+            <button class="btn btn-primary w-100 mb-3">Editar</button>
+        </form>
+    </div>
+</body>
+
+</html>

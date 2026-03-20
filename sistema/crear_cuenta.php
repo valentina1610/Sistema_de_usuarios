@@ -19,6 +19,9 @@ foreach ($archivos as $archivo) {
     if ($archivo !== '.' && $archivo !== '..') {
         $contenido = file_get_contents('../db/usuario/' . $archivo);
         $usuarioJson = json_decode($contenido, true);
+        if (!$usuarioJson)
+            continue;
+
         if ($usuario === $usuarioJson['usuario']) {
             echo "El usuario ya existe";
             exit;
