@@ -19,7 +19,7 @@ foreach ($archivos as $archivo) {
 header('Content-Type: application/json');
 if ($encontrado) {
     $nuevaClave = rand(100000, 999999); // Generamos una nueva clave aleatoria de 6 dígitos
-    $usuarioJson['clave'] = $nuevaClave; // Actualizamos la clave del usuario
+    $usuarioJson['clave'] = password_hash($nuevaClave, PASSWORD_DEFAULT); // Actualizamos la clave del usuario con hash
     file_put_contents('../db/usuario/' . $archivo, json_encode($usuarioJson, JSON_PRETTY_PRINT));
     echo json_encode(["ok" => true, "mensaje" => "Clave restablecida. Tu nueva clave es: " . $nuevaClave]);
 } else {

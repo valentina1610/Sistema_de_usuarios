@@ -8,7 +8,7 @@ foreach ($archivos as $archivo) {
     if ($archivo !== '.' && $archivo !== '..') {
         $contenido = file_get_contents('../db/usuario/' . $archivo);
         $usuarioJson = json_decode($contenido, true);
-        if ($usuario === $usuarioJson['usuario'] && $clave === $usuarioJson['clave']) {
+        if ($usuario === $usuarioJson['usuario'] && password_verify($clave, $usuarioJson['clave'])) { // verificamos si el usuario y la clave coinciden
             $encontrado = true;
             break;
         }

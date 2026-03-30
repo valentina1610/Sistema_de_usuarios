@@ -27,8 +27,8 @@ foreach ($archivos as $archivo) {
 header('Content-Type: application/json');
 
 if (count($resultados) > 0) {
-    echo json_encode(["ok" => true, "resultados" => $resultados]);
+    echo json_encode(["code" => 200, "resultados" => $resultados]);
 } else {
-    echo json_encode(["ok" => false, "mensaje" => "No se encontraron resultados"]);
+    echo json_encode(["code" => 201, "msj" => "No se encontraron resultados"]);
 }
 ?>

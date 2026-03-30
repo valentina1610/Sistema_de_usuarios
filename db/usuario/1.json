@@ -1,7 +1,7 @@
 {
-    "id": "1",
-    "nombre": "maria becerra",
-    "usuario": "maria123",
-    "clave": "mariaa",
-    "activo": "0"
+    "id": 1,
+    "nombre": "emilia mernes",
+    "usuario": "emilia",
+    "clave": "$2y$10$SGhinnpn1N1KT5yAtR0EUOjaNjwAqvKoKrFXQzCRpnZbM9L1c8AV6",
+    "activo": 1
 }

@@ -5,6 +5,7 @@ include('include/usuario/usuario.php');
 $nombre = $_POST['nombre'];
 $usuario = $_POST['usuario'];
 $clave = $_POST['clave'];
+$claveHash = password_hash($clave, PASSWORD_DEFAULT);
 $confirmarClave = $_POST['confirmarClave'];
 
 // Validamos clave
@@ -33,7 +34,7 @@ foreach ($archivos as $archivo) {
 $usuarioObj = new Usuario();
 $usuarioObj->setNombre($nombre);
 $usuarioObj->setUsuario($usuario);
-$usuarioObj->setClave($clave);
+$usuarioObj->setClave($claveHash);
 $usuarioObj->setActivo(1);
 
 $usuarioObj->guardar();
