@@ -1,5 +1,5 @@
 <?php
-class usuario
+class Usuario
 {
     private $id;
     private $nombre;
@@ -11,17 +11,14 @@ class usuario
     {
         $this->nombre = $nombre;
     }
-
     public function setUsuario($usuario)
     {
         $this->usuario = $usuario;
     }
-
     public function setClave($clave)
     {
         $this->clave = $clave;
     }
-
     public function setActivo($activo)
     {
         $this->activo = $activo;
@@ -31,22 +28,18 @@ class usuario
     {
         return $this->id;
     }
-
     public function getNombre()
     {
         return $this->nombre;
     }
-
     public function getUsuario()
     {
         return $this->usuario;
     }
-
     public function getClave()
     {
         return $this->clave;
     }
-
     public function getActivo()
     {
         return $this->activo;
@@ -54,21 +47,26 @@ class usuario
 
     public function guardar()
     {
-        $archivos = scandir('../db/usuario'); //obtenemos los archivos del directorio usuario
-        $count = count($archivos) - 2; // contamos los archivos del directorio usuario y restamos los directorios padre e hijo
-        $this->id = $count + 1; // asignamos un id al usuario basado en la cantidad de archivos en el directorio usuario
-        $usuarioData = [ //creamos un array con los datos del usuario
+        $path = dirname(__DIR__, 3) . '/db/usuario';
+
+        if (!is_dir($path)) {
+            mkdir($path, 0777, true); // Creamos el directorio si no existe
+        }
+
+        $archivos = scandir($path);
+        $count = count($archivos) - 2; // Restamos . y ..
+        $this->id = $count + 1;
+
+        $usuarioData = [
             'id' => $this->id,
             'nombre' => $this->nombre,
             'usuario' => $this->usuario,
-            'clave' => $this->clave,
-            'activo' => 1
+            'clave' => $this->clave, // Ya viene hasheada desde crear_cuenta.php
+            'activo' => $this->activo
         ];
-        $json = json_encode($usuarioData, JSON_PRETTY_PRINT); // convertimos el array a json
-        file_put_contents('../db/usuario/' . $this->id . '.json', $json); // guardamos el json en el directorio usuario con el nombre del usuario
 
-
-
+        $json = json_encode($usuarioData, JSON_PRETTY_PRINT);
+        file_put_contents($path . '/' . $this->id . '.json', $json);
     }
 }
 ?>

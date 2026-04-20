@@ -1,11 +1,14 @@
 <?php
-$usuario = $_POST['usuario']; //obtenemos el usuario del formulario
-$archivos = scandir('../db/usuario'); //obtenemos los archivos del directorio usuario
-$encontrado = false; // variable para verificar si el usuario fue encontrado
+header('Content-Type: application/json');
+
+$usuario = $_POST['usuario'];
+$path = dirname(__DIR__) . '/db/usuario';
+$archivos = scandir($path);
+$encontrado = false;
 
 foreach ($archivos as $archivo) {
     if ($archivo !== '.' && $archivo !== '..') {
-        $contenido = file_get_contents('../db/usuario/' . $archivo);
+        $contenido = file_get_contents($path . '/' . $archivo);
         $usuarioJson = json_decode($contenido, true);
         if (!$usuarioJson)
             continue;
@@ -16,14 +19,15 @@ foreach ($archivos as $archivo) {
         }
     }
 }
-header('Content-Type: application/json');
+
 if ($encontrado) {
     $nuevaClave = rand(100000, 999999); // Generamos una nueva clave aleatoria de 6 dígitos
-    $usuarioJson['clave'] = password_hash($nuevaClave, PASSWORD_DEFAULT); // Actualizamos la clave del usuario con hash
-    file_put_contents('../db/usuario/' . $archivo, json_encode($usuarioJson, JSON_PRETTY_PRINT));
-    echo json_encode(["ok" => true, "mensaje" => "Clave restablecida. Tu nueva clave es: " . $nuevaClave]);
+    $usuarioJson['clave'] = password_hash((string) $nuevaClave, PASSWORD_DEFAULT); // Hasheamos la nueva clave
+    file_put_contents($path . '/' . $archivo, json_encode($usuarioJson, JSON_PRETTY_PRINT));
+
+    // Devolvemos la nueva clave al frontend para mostrarla al usuario
+    echo json_encode(["ok" => true, "nuevaClave" => $nuevaClave]);
 } else {
     echo json_encode(["ok" => false, "mensaje" => "Usuario no encontrado"]);
-
 }
 ?>

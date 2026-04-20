@@ -1,45 +1,225 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+      :root {
+        --rosa: #f472b6;
+        --rosa-oscuro: #db2777;
+        --crema: #fff7f0;
+      }
+      body {
+        background: var(--crema);
+        font-family: "DM Sans", sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-image: radial-gradient(
+          circle at 80% 20%,
+          #fce7f3 0%,
+          transparent 50%
+        );
+      }
+      .card-login {
+        background: white;
+        border-radius: 24px;
+        padding: 40px;
+        width: 100%;
+        max-width: 420px;
+        box-shadow: 0 8px 40px rgba(244, 114, 182, 0.15);
+        border: 1px solid #fce7f3;
+        animation: fadeUp 0.5s ease;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .titulo {
+        font-family: "Playfair Display", serif;
+        color: #1e1e2e;
+        font-size: 2rem;
+        margin-bottom: 4px;
+      }
+      .subtitulo {
+        color: #9ca3af;
+        font-size: 0.9rem;
+        margin-bottom: 28px;
+      }
+      .form-label {
+        font-weight: 500;
+        font-size: 0.85rem;
+        color: #1e1e2e;
+      }
+      .form-control {
+        border: 1.5px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 11px 14px;
+        font-size: 0.92rem;
+        background: #fafafa;
+        transition: all 0.2s;
+      }
+      .form-control:focus {
+        border-color: var(--rosa);
+        box-shadow: 0 0 0 3px rgba(244, 114, 182, 0.15);
+        background: white;
+      }
+      .btn-primary-rosa {
+        background: linear-gradient(135deg, var(--rosa), var(--rosa-oscuro));
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 12px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        width: 100%;
+        transition: all 0.2s;
+      }
+      .btn-primary-rosa:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(219, 39, 119, 0.3);
+        color: white;
+      }
+      .link-rosa {
+        color: var(--rosa-oscuro);
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .link-rosa:hover {
+        color: var(--rosa);
+      }
+      .punto {
+        width: 8px;
+        height: 8px;
+        background: var(--rosa);
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card-login">
+      <div id="mensajeRegistro"></div>
+      <span class="punto"></span
+      ><span style="font-size: 0.8rem; color: #9ca3af; font-weight: 500"
+        >NUEVA CUENTA</span
+      >
+      <h1 class="titulo mt-1">Registrarse</h1>
+      <p class="subtitulo">Completá tus datos para crear una cuenta</p>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Registro</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
-</head>
+      <form id="formRegistro">
+        <div class="mb-3">
+          <label class="form-label">Nombre completo</label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            class="form-control"
+            placeholder="Tu nombre y apellido"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Usuario</label>
+          <input
+            type="text"
+            id="usuario"
+            name="usuario"
+            class="form-control"
+            placeholder="tu_usuario"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Contraseña</label>
+          <input
+            type="password"
+            id="clave"
+            name="clave"
+            class="form-control"
+            placeholder="••••••••"
+            required
+          />
+        </div>
+        <div class="mb-4">
+          <label class="form-label">Confirmar contraseña</label>
+          <input
+            type="password"
+            id="confirmarClave"
+            name="confirmarClave"
+            class="form-control"
+            placeholder="••••••••"
+            required
+          />
+        </div>
+        <button type="submit" class="btn-primary-rosa">Crear cuenta</button>
+      </form>
 
-<body class="d-flex justify-content-center align-items-center vh-100">
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <div style="border: 1px solid #ccc; max-width: 400px; margin: 50px auto; padding: 20px; border-radius: 10px;"
-    class="container">
-    <h1 class="mt-5">Registro</h1>
-    <form method="post" action="sistema/crear_cuenta.php">
-      <div class="mb-3">
-        <label for="nombre" class="form-label">Nombre completo</label>
-        <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ingrese su nombre y apellido"
-          required />
-      </div>
+      <p
+        class="text-center mt-4 mb-0"
+        style="font-size: 0.88rem; color: #9ca3af"
+      >
+        ¿Ya tenés cuenta?
+        <a href="login.html" class="link-rosa">Iniciá sesión</a>
+      </p>
+    </div>
 
-      <div class="mb-3">
-        <label for="usuario" class="form-label">Usuario</label>
-        <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Ingrese su usuario" required />
-      </div>
+    <script>
+      $("#formRegistro").submit(function (e) {
+        e.preventDefault();
 
-      <div class="mb-3">
-        <label for="clave" class="form-label">Clave</label>
-        <input type="password" id="clave" name="clave" class="form-control"
-          placeholder="Ingrese su clave" required />
-      </div>
+        const clave = $("#clave").val();
+        const confirmar = $("#confirmarClave").val();
 
-      <div class="mb-3">
-        <label for="confirmarClave" class="form-label">Confirmar clave</label>
-        <input type="password" id="confirmarClave" name="confirmarClave" class="form-control"
-          placeholder="Confirme su clave" required />
-      </div>
-      <button class="btn btn-primary w-100 mb-3">Registrarme</button>
-    </form>
-  </div>
-</body>
+        if (clave !== confirmar) {
+          $("#mensajeRegistro").html(
+            '<div class="alert alert-danger rounded-3 py-2">Las contraseñas no coinciden</div>',
+          );
+          return;
+        }
 
+        $.post(
+          "sistema/crear_cuenta.php",
+          {
+            nombre: $("#nombre").val(),
+            usuario: $("#usuario").val(),
+            clave: clave,
+            confirmarClave: confirmar,
+          },
+          function (rta) {
+            if (rta.ok) {
+              $("#mensajeRegistro").html(
+                '<div class="alert alert-success rounded-3 py-2">¡Cuenta creada! 🌸 Redirigiendo...</div>',
+              );
+              setTimeout(() => {
+                window.location.href = "login.html";
+              }, 1500);
+            } else {
+              $("#mensajeRegistro").html(
+                `<div class="alert alert-danger rounded-3 py-2">${rta.mensaje}</div>`,
+              );
+            }
+          },
+        );
+      });
+    </script>
+  </body>
 </html>

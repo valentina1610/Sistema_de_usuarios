@@ -1,45 +1,48 @@
 <?php
-// Recibimos datos del formulario
+header('Content-Type: application/json');
+
 $ID = $_POST['id'];
 $nombre = $_POST['nombre'];
 $usuario = $_POST['usuario'];
 $clave = $_POST['clave'];
 $activo = $_POST['activo'];
 
-$path = dirname(__DIR__, 3) . '/db/usuario'; // Obtenemos la ruta al directorio de usuarios
+// Validamos longitud mínima de clave
+if (strlen($clave) < 6) {
+    echo json_encode(["ok" => false, "mensaje" => "La contraseña debe tener al menos 6 caracteres"]);
+    exit;
+}
 
-$archivos = scandir($path); // Obtenemos los archivos del directorio de usuarios
+$path = dirname(__DIR__, 3) . '/db/usuario';
+$archivos = scandir($path);
 
-foreach ($archivos as $archivo) { // Iteramos sobre los archivos para verificar si el usuario ya existe
+foreach ($archivos as $archivo) {
     if ($archivo !== '.' && $archivo !== '..') {
-
         $contenido = file_get_contents($path . '/' . $archivo);
         $usuarioJson = json_decode($contenido, true);
-
         if (!$usuarioJson)
             continue;
 
-        if ($usuarioJson['usuario'] === $usuario && $ID != $usuarioJson['id']) { // Verificamos si el usuario ya existe y no es el mismo que estamos editando
-            header('Content-Type: application/json');
-            header('Content-Disposition: inline');
-            echo json_encode(["ok" => false, "mensaje" => "El usuario ya existe, prueba con otro"]);
+        if ($usuarioJson['usuario'] === $usuario && $ID != $usuarioJson['id']) {
+            echo json_encode(["ok" => false, "mensaje" => "El usuario ya existe, probá con otro"]);
             exit;
         }
     }
 }
 
-$usuarioData = [ // Creamos un array con los datos del usuario a guardar
+// Hasheamos la clave antes de guardar
+$claveHash = password_hash($clave, PASSWORD_DEFAULT);
+
+$usuarioData = [
     "id" => $ID,
     "nombre" => $nombre,
     "usuario" => $usuario,
-    "clave" => $clave,
+    "clave" => $claveHash, // Guardamos la clave hasheada
     "activo" => $activo
 ];
-$rutaArchivo = $path . '/' . $ID . '.json'; // Definimos la ruta del archivo a guardar, usando el ID como nombre del archivo
-file_put_contents($rutaArchivo, json_encode($usuarioData, JSON_PRETTY_PRINT)); // Guardamos el usuario en un archivo JSON
 
-header('Content-Type: application/json');
-header('Content-Disposition: inline');
-echo json_encode(["ok" => true, "mensaje" => "Usuario editado/agregado correctamente"]);
+$rutaArchivo = $path . '/' . $ID . '.json';
+file_put_contents($rutaArchivo, json_encode($usuarioData, JSON_PRETTY_PRINT));
 
+echo json_encode(["ok" => true, "mensaje" => "Usuario editado correctamente"]);
 ?>
