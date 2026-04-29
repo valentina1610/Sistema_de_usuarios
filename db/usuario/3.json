@@ -1,7 +1,8 @@
 {
     "id": 3,
-    "nombre": "martina stoessel",
-    "usuario": "tini",
-    "clave": "$2y$10$X93ahu7Lkp5lXvX8K1Zz7uymKMC.cty8BJkaMwTeHa72aohqJbi52",
-    "activo": 1
+    "nombre": "Emilia Lopez",
+    "usuario": "emi123",
+    "clave": "$2y$10$RNtSRrE4PcYtkeZ6kpFe3.h26\/Ourc0\/PEu1c9Q0MIUjw3CyPcatS",
+    "activo": 1,
+    "permiso_id": "c88f3132-5d33-4b54-9a33-dff023bd0709"
 }

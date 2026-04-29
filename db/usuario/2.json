@@ -1,7 +1,8 @@
 {
     "id": 2,
-    "nombre": "maria becerra",
-    "usuario": "maria",
-    "clave": "$2y$10$GlKt11BPJphbGqPZGWG2z.ZmXe6b3X4oEroFBFc7lCBSm5Y\/ldfjO",
-    "activo": 1
+    "nombre": "Maria Perez",
+    "usuario": "maria123",
+    "clave": "$2y$10$zJ1.J8thBoMSl7koRtu4nOgNd36SivuYZCCQakBf9\/AjfM.YvIXCm",
+    "activo": 1,
+    "permiso_id": "a4cd7a00-be48-4a69-afd9-9718ba5e7bf8"
 }

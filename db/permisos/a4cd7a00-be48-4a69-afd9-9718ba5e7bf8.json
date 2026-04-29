@@ -1,0 +1,18 @@
+{
+    "id": "a4cd7a00-be48-4a69-afd9-9718ba5e7bf8",
+    "descripcion": "Recepcionista",
+    "permisos": {
+        "General": 1,
+        "Paciente": 1,
+        "Clientes": 1,
+        "Agenda": 1,
+        "Productos": 0,
+        "Ordenes de Servicio": 0,
+        "Facturacion": 0,
+        "Libros": 0,
+        "Proveedores": 0,
+        "Usuarios": 0,
+        "Roles": 0,
+        "Configuraciones": 0
+    }
+}

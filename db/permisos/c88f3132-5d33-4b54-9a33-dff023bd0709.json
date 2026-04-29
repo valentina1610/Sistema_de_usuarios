@@ -1,0 +1,18 @@
+{
+    "id": "c88f3132-5d33-4b54-9a33-dff023bd0709",
+    "descripcion": "Usuario normal",
+    "permisos": {
+        "General": 1,
+        "Paciente": 1,
+        "Clientes": 0,
+        "Agenda": 0,
+        "Productos": 0,
+        "Ordenes de Servicio": 0,
+        "Facturacion": 0,
+        "Libros": 0,
+        "Proveedores": 0,
+        "Usuarios": 0,
+        "Roles": 0,
+        "Configuraciones": 0
+    }
+}

@@ -1,7 +1,8 @@
 {
     "id": 1,
-    "nombre": "emilia mernes",
-    "usuario": "emilia",
-    "clave": "$2y$10$3B2SzMfBx2mPNanjbXxEeOXQ9ZVVKaPp0xmuAUx4gca10DDFTKOVu",
-    "activo": 1
+    "nombre": "Valentina Olmos",
+    "usuario": "valen123",
+    "clave": "$2y$10$3xXwBf.21ryJxpyurzqWGOKAXE\/aoStGmyfg6Q3hHZeK3LNlxuFEi",
+    "activo": 1,
+    "permiso_id": ""
 }
