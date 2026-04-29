@@ -507,7 +507,7 @@ function renderTablaUsuarios(lista) {
         const activoBadge = u.activo == 1 ? '<span class="badge-activo">Activo</span>' : '<span class="badge-inactivo">Inactivo</span>';
         let permBadge;
         if (esOwner) {
-            permBadge = '<span class="badge-owner" style="font-size:.78rem;">👑 Owner</span>';
+            permBadge = '<span class="badge-owner" style="font-size:.78rem;">Owner</span>';
         } else if (u.permiso_id) {
             const perfil = listaPermisosCached.find(p => p.id === u.permiso_id);
             permBadge = '<span class="badge-permisos">' + escapeHtml(perfil ? perfil.descripcion : u.permiso_id.substring(0,8)+'…') + '</span>';
@@ -524,7 +524,7 @@ function renderTablaUsuarios(lista) {
             <td>
                 <button class="btn btn-sm btn-outline-secondary" style="border-radius:8px;font-size:.8rem;"
                     onclick='abrirModalEditarUsuario(${JSON.stringify(u)})'>
-                    ✏️ Editar
+                     Editar
                 </button>
             </td>
         </tr>`;
